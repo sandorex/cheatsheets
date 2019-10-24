@@ -1,0 +1,7 @@
+All diagrams were exported using draw.io
+
+When exporting use following settings:
+   Format: SVG
+   Zoom: 100%
+   Borderwidth: 15
+   Include copy of my diagram: Yes

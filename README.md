@@ -13,12 +13,14 @@
 ## Adapter
 ## Facade
 ## Proxy
-Proxy pattern is adding a **proxy** (*a person who is given the power or authority to do something for someone else*) between interfaces for multitude of reasons like caching, security or remote objects that require additional processing to be used
+Proxy pattern is basically adding a **proxy** (*a person who is given the power or authority to do something for someone else*) between interfaces for multitude of reasons like caching, security or remote objects that require additional processing to be used
 
 ![UML Diagram](assets/proxy-pattern.svg)
 
 ### Example
 For this example imagine we have a large amount of data inside a database and we want to get a piece of data inside the database, so we have a `Database` class that reads a database and has `String get(String key)` method to get the data
+
+![UML Diagram](assets/proxy-pattern-example-01.svg)
 
 ```java
 interface IDatabase {
@@ -38,9 +40,10 @@ class Database implements IDatabase {
 }
 ```
 
-![UML Diagram](assets/proxy-pattern-example-01.svg)
 
 But now every time we instantiate `Database` it's gonna read and parse the database and we may not even use it, this is where proxy comes into play
+
+![UML Diagram](assets/proxy-pattern-example-02.svg)
 
 ```java
 class LazyDatabaseProxy implements IDatabase {
@@ -63,8 +66,6 @@ class LazyDatabaseProxy implements IDatabase {
    }
 }
 ```
-
-![UML Diagram](assets/proxy-pattern-example-02.svg)
 
 > **NOTE** Usually there is gonna be multiple methods that return data thats why `initialize_database()` would be useful, but with just `get()` it is redundant
 
