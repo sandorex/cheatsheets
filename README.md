@@ -28,7 +28,7 @@ interface IDatabase {
 }
 
 class Database implements IDatabase {
-   String[] database = {};
+   Map<String, String> database = null;
 
    public Database(String path) {
       ... // expensive database parsing
