@@ -75,7 +75,7 @@ Now every time we try get data from the database it's gonna be parsed then retur
 </details>
 
 ## Bridge
-Bridge pattern basically allows combinations of implementions
+Bridge pattern basically allows combinations of implementations
 
 > **NOTE** the UML diagram is really confusing but you should see it anyways
 
