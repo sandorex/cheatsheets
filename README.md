@@ -15,12 +15,15 @@
 ## Proxy
 Proxy pattern is basically adding a **proxy** (*a person who is given the power or authority to do something for someone else*) between interfaces for multitude of reasons like caching, security or remote objects that require additional processing to be used
 
-![UML Diagram](assets/proxy-pattern.svg)
+![UML Diagram](assets/proxy/pattern.svg)
 
-### Example
-For this example imagine we have a large amount of data inside a database and we want to get a piece of data inside the database, so we have a `Database` class that reads a database and has `String get(String key)` method to get the data
+### Examples
+<details>
+<summary>Lazy Loading</summary>
 
-![UML Diagram](assets/proxy-pattern-example-01.svg)
+For this example imagine we have a large amount of data inside a database and we want to get a piece of data inside the database, so we have a <code>Database</code> class that reads a database and has <code>String get(String key)</code> method to get the data
+
+![UML Diagram](assets/proxy/lazy-loading-01.svg)
 
 ```java
 interface IDatabase {
@@ -40,10 +43,9 @@ class Database implements IDatabase {
 }
 ```
 
+But now every time we instantiate <code>Database</code> it's gonna read and parse the database and we may not even use it, this is where proxy comes into play
 
-But now every time we instantiate `Database` it's gonna read and parse the database and we may not even use it, this is where proxy comes into play
-
-![UML Diagram](assets/proxy-pattern-example-02.svg)
+![UML Diagram](assets/proxy/lazy-loading-02.svg)
 
 ```java
 class LazyDatabaseProxy implements IDatabase {
@@ -70,20 +72,23 @@ class LazyDatabaseProxy implements IDatabase {
 > **NOTE** Usually there is gonna be multiple methods that return data thats why `initialize_database()` would be useful, but with just `get()` it is redundant
 
 Now every time we try get data from the database it's gonna be parsed then return the data, while this may not always be the best approach it can be useful
+</details>
 
 ## Bridge
 Bridge pattern basically allows combinations of implementions
 
 > **NOTE** the UML diagram is really confusing but you should see it anyways
 
-![UML Diagram](assets/bridge-pattern.svg)
+![UML Diagram](assets/bridge/pattern.svg)
 
-### Example
-For this example imagine we have a GUI and we have three very different objects that we want to display lets use `Book`, `Car` and `House`, now we have to be able to display them in short concise view (`ThumbnailView`) and long detailed view (`DetailedView`)
+### Examples
+<details>
+<summary>Displaying Fundamentally Different Data</summary>
+For this example imagine we have a GUI and we have three very different objects that we want to display lets use <code>Book</code>, <code>Car</code> and <code>House</code>, now we have to be able to display them in short concise view (<code>ThumbnailView</code>) and long detailed view (<code>DetailedView</code>)
 
 If we were to make a class for every combination there would be total of 6 classes and code repetition would be awful but with bridge pattern it's a lot easier to extend with no code repetition
 
-![UML Diagram](assets/bridge-pattern-example-01.svg)
+![UML Diagram](assets/bridge/displaying-data-01.svg)
 
 ```java
 interface IDataAdapter {
@@ -199,6 +204,8 @@ class HouseDataAdapter implements IDataAdapter {
 
 
 ```
+
+</details>
 
 ## Template Method
 ## Composite
