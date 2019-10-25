@@ -208,6 +208,14 @@ class HouseDataAdapter implements IDataAdapter {
 </details>
 
 ## Template Method
+Template Method pattern allows defining skeleton of an algorithm and then changing parts of it to change the behaviour, this pattern is mostly used in frameworks
+
+![UML Diagram](assets/template-method/pattern.svg)
+
+### Examples
+
+> **TODO** i could not find a good example
+
 ## Composite
 ## Iterator
 ## State
