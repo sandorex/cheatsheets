@@ -14,11 +14,6 @@ include:
 defaults:
   -
     scope:
-      path:            "**/*"
-    values:
-      sitemap:         false
-  -
-    scope:
       path:            "*/README.md"
     values:
       sitemap:         true
