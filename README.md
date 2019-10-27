@@ -200,9 +200,6 @@ class HouseDataAdapter implements IDataAdapter {
       return this.house.pictures;
    }
 }
-
-
-
 ```
 
 </details>
