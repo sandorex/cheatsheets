@@ -3,17 +3,10 @@ description: Cheatsheets for variety of things
 
 plugins:
   - jekyll-relative-links
-  - jekyll-sitemap
-markdown: GFM
 relative_links:
   enabled: true
   collections: true
 include:
   - README.md
   - LICENSE
-defaults:
-  -
-    scope:
-      path:            "*/README.md"
-    values:
-      sitemap:         true
+markdown: GFM
