@@ -1,5 +1,6 @@
 plugins:
   - jekyll-relative-links
+  - jekyll-titles-from-headings
 relative_links:
   enabled: true
   collections: true
