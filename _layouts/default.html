@@ -6,13 +6,33 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+      <link rel="stylesheet" href="{{ "/assets/css/main.css?v=" | append: site.github.build_revision | relative_url }}">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    </head>
 
    <body>
-      <nav class="navbar navbar-light">
-         <a class="navbar-brand" href="{{ site.url }}{{ site.baseurl }}/">Cheatsheets</a>
-         <a class="text-center" href="https://github.com/sandorex/cheatsheets"><img src="{{ "/assets/github-mark-dark.png?v=" | append: site.github.build_revision | relative_url }}" width="30" height="30" alt="Github"></a>
+      <!-- generate breadcrumbs -->
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb bg-light">
+            <li class="breadcrumb-item font-weight-bold">
+               <a class="text-center" href="https://github.com/sandorex/cheatsheets"><img style="border-radius: 50%;" src="{{ "/assets/github-mark-dark.png?v=" | append: site.github.build_revision | relative_url }}" width="30" height="30" alt=""></a>
+               <a class="nice-link" href="{{ site.baseurl }}/index.html">Cheatsheets</a>
+            </li>
+
+            {% assign segments = page.dir | remove_first: "/" | split: "/" %}
+            {% for segment in segments %}
+            {% if forloop.last %}
+               <li class="breadcrumb-item active" aria-current="page">{{ segment }}</li>
+            {% else %}
+               {% assign link = site.baseurl | append: "/" %}
+               {% assign length = forloop.index | minus: 1 %}
+               {% for i in (0..length) %}
+                  {% assign link = link | append: segments[i] | append: "/" %}
+               {% endfor %}
+               <li class="breadcrumb-item"><a class="nice-link" href="{{ link }}">{{ segment }}</a></li>
+            {% endif %}
+            {% endfor %}
+         </ol>
       </nav>
 
       <div class="container-lg px-3 my-5 markdown-body">
@@ -21,7 +41,7 @@
 
       <footer class="footer">
          <div class="container">
-            <p class="text-center font-italic">Cheatsheets are licensed under <a href="https://github.com/sandorex/cheatsheets/blob/master/LICENSE">CC-BY-4.0</a> license</p>
+            <p class="text-center font-italic"><a href="https://github.com/sandorex/cheatsheets">Cheatsheets</a> are licensed under <a href="{{ "/LICENSE?v=" | append: site.github.build_revision | relative_url }}">CC-BY-4.0</a> license</p>
          </div>
       </footer>
 
