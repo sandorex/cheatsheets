@@ -71,7 +71,7 @@ class LazyDatabaseProxy implements IDatabase {
 
 > **NOTE** Usually there is gonna be multiple methods that return data thats why `initialize_database()` would be useful, but with just `get()` it is redundant
 
-Now every time we try get data from the database it's gonna be parsed then return the data, while this may not always be the best approach it can be useful
+Now every time we try to get data from the database it's gonna be parsed then return the data, while this may not always be the best approach it can be useful
 </details>
 
 ## Bridge
