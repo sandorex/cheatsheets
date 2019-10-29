@@ -1,0 +1,12 @@
+{% if page.dir == "/" %}
+   <title>Cheatsheets</title>
+{% else %}
+   {% assign pagename = "" %}
+   {% assign words = page.dir | split: "/" | last | replace: "-", " " | split: " " %}
+   {% for i in words %}
+      {% assign word = i | capitalize %}
+      {% assign pagename = pagename | append: " " | append: word %}
+   {% endfor %}
+
+   <title>Cheatsheets: {{ pagename | lstrip }}</title>
+{% endif %}
