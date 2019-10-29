@@ -1,4 +1,4 @@
-# [Design Patterns Cheatsheet](https://sandorex.github.io/cheatsheets/design-patterns/)
+# Design Patterns Cheatsheet
 **Huge thanks to [Christopher Okhravi](https://www.youtube.com/channel/UCbF-4yQQAWw-UnuCd2Azfzg) for his [playlist](https://www.youtube.com/playlist?list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc) on design patterns, i really recommend you watch it!**
 
 > **WARNING** the code is a mix between java and pseudocode, it's simplified and should not be used directly
