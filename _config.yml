@@ -5,6 +5,7 @@ url: https://sandorex.github.io
 baseurl: /cheatsheets
 
 theme: jekyll-theme-primer
+markdown: GFM
 plugins:
   - jekyll-relative-links
   - jekyll-seo-tag
@@ -12,7 +13,6 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-markdown: GFM
 
 include:
   - README.md
