@@ -11,9 +11,7 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-markdown: kramdown
-kramdown:
-  input: GFM
+markdown: GFM
 
 include:
   - README.md
