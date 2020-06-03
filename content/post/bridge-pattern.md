@@ -17,7 +17,7 @@ Bridge pattern basically allows combinations of implementations
 The name of the pattern comes from the diagram, cause it kinda looks like a bridge
 
 ### Examples
-- [Displaying Fundamentally Different Data](examples/displaying-different-data)
+- [Displaying Fundamentally Different Data](examples/displaying-fundamentally-different-data)
 
 ---
 
