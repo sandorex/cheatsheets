@@ -1,4 +1,4 @@
-baseURL = "https://sandorex.github.io/notes-and-cheatsheets"
+baseURL = "https://sandorex.xyz/notes-and-cheatsheets"
 title = "Notes & Cheatsheets"
 theme = "hugo-notepadium"
 copyright = "© 2020 by Aleksandar Radivojević"
