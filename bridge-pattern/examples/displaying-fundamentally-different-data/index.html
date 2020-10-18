@@ -1,0 +1,111 @@
+<!doctype html><html lang=en><meta charset=utf-8><meta name=generator content="Hugo 0.70.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=color-scheme content="light dark"><meta name=supported-color-schemes content="light dark"><title>Displaying Fundamentally Different Data&nbsp;&ndash;&nbsp;Notes & Cheatsheets</title><link rel=stylesheet href=../../../css/core.min.c248b0a63e69fc1234551d012273899b87baf2edca5d216d0392fd17e6f8f338d0f544da0b4ef46e01d2a3289df4c097.css integrity=sha384-wkiwpj5p/BI0VR0BInOJm4e68u3KXSFtA5L9F+b48zjQ9UTaC070bgHSoyid9MCX><meta name=twitter:card content="summary"><meta name=twitter:title content="Displaying Fundamentally Different Data"><body><section id=header><div class="header wrap"><span class="header left-side"><a class="site home" href=../../../><span class="site name">Notes & Cheatsheets</span></a></span>
+<span class="header right-side"><div class="nav wrap"><nav class=nav><a class="nav item" href=../../../tags/>Tags</a><a class="nav item" href=../../../about>About</a></nav></div></span></div></section><section id=content><div class=article-container><section class="article header"><h1 class="article title">Displaying Fundamentally Different Data</h1><p class="article date">May 13, 2020</p></section><article class="article markdown-body"><blockquote><p><strong>WARNING</strong> the code is a mix between java and pseudocode, and should not be used directly</p></blockquote><p>For this example imagine we have a GUI and we have three very different objects that we want to display</p><p>Let&rsquo;s use <code>Book</code>, <code>Car</code> and <code>House</code>, and we have to be able to display them in short concise view (<code>ThumbnailView</code>) and long detailed view (<code>DetailedView</code>)</p><p>If we were to make a class for every combination there would be total of 6 classes and code repetition would be awful but with bridge pattern it&rsquo;s a lot easier to extend with no code repetition</p><p><img src=../../../design-patterns/bridge/displaying-data-01.svg alt="UML Diagram"></p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kd>interface</span> <span class=nc>IDataAdapter</span> <span class=o>{</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=nf>get_title</span><span class=o>();</span>
+   <span class=kd>public</span> <span class=n>Picture</span> <span class=nf>get_thumbnail</span><span class=o>();</span>
+   <span class=kd>public</span> <span class=n>Picture</span><span class=o>[]</span> <span class=nf>get_pictures</span><span class=o>();</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>DataView</span> <span class=o>{</span>
+   <span class=n>IDataAdapter</span> <span class=n>adapter</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+
+   <span class=kd>public</span> <span class=nf>DataView</span><span class=o>(</span><span class=n>IDataAdapter</span> <span class=n>adapter</span><span class=o>)</span> <span class=o>{</span>
+      <span class=k>this</span><span class=o>.</span><span class=na>adapter</span> <span class=o>=</span> <span class=n>adapter</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=kd>abstract</span> <span class=nf>show</span><span class=o>();</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>ThumbnailView</span> <span class=kd>extends</span> <span class=n>DataView</span> <span class=o>{</span>
+   <span class=kd>public</span> <span class=nf>show</span><span class=o>()</span> <span class=o>{</span>
+      <span class=o>...</span> <span class=c1>// show the gui
+</span><span class=c1></span>   <span class=o>}</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>DetailedView</span> <span class=kd>extends</span> <span class=n>DataView</span> <span class=o>{</span>
+   <span class=kd>public</span> <span class=nf>show</span><span class=o>()</span> <span class=o>{</span>
+      <span class=o>...</span> <span class=c1>// show the gui
+</span><span class=c1></span>   <span class=o>}</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>Book</span> <span class=o>{</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>title</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>year</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>author</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>Picture</span> <span class=n>cover</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>Picture</span><span class=o>[]</span> <span class=n>pictures</span><span class=o>;</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>BookDataAdapter</span> <span class=kd>implements</span> <span class=n>IDataAdapter</span> <span class=o>{</span>
+   <span class=n>Book</span> <span class=n>book</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+   
+   <span class=kd>public</span> <span class=nf>BookDataAdapter</span><span class=o>(</span><span class=n>Book</span> <span class=n>book</span><span class=o>)</span> <span class=o>{</span>
+      <span class=k>this</span><span class=o>.</span><span class=na>book</span> <span class=o>=</span> <span class=n>book</span><span class=o>;</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>String</span> <span class=nf>get_title</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>book</span><span class=o>.</span><span class=na>title</span> <span class=o>+</span> <span class=s>&#34; (&#34;</span> <span class=o>+</span> <span class=k>this</span><span class=o>.</span><span class=na>book</span><span class=o>.</span><span class=na>year</span> <span class=o>+</span> <span class=s>&#34;) by &#34;</span> <span class=o>+</span> <span class=k>this</span><span class=o>.</span><span class=na>book</span><span class=o>.</span><span class=na>author</span><span class=o>;</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>Picture</span> <span class=nf>get_thumbnail</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>book</span><span class=o>.</span><span class=na>cover</span><span class=o>;</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>Picture</span><span class=o>[]</span> <span class=nf>get_pictures</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>book</span><span class=o>.</span><span class=na>pictures</span><span class=o>;</span>
+   <span class=o>}</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>Car</span> <span class=o>{</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>model</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>year</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>manufacturer</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>Picture</span><span class=o>[]</span> <span class=n>pictures</span><span class=o>;</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>CarDataAdapter</span> <span class=kd>implements</span> <span class=n>IDataAdapter</span> <span class=o>{</span>
+   <span class=n>Car</span> <span class=n>car</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+   
+   <span class=kd>public</span> <span class=nf>CarDataAdapter</span><span class=o>(</span><span class=n>Car</span> <span class=n>car</span><span class=o>)</span> <span class=o>{</span>
+      <span class=k>this</span><span class=o>.</span><span class=na>car</span> <span class=o>=</span> <span class=n>car</span><span class=o>;</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>String</span> <span class=nf>get_title</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>car</span><span class=o>.</span><span class=na>manufacturer</span> <span class=o>+</span> <span class=s>&#34; &#34;</span> <span class=o>+</span> <span class=k>this</span><span class=o>.</span><span class=na>car</span><span class=o>.</span><span class=na>model</span> <span class=o>+</span> <span class=s>&#34; (&#34;</span> <span class=o>+</span> <span class=k>this</span><span class=o>.</span><span class=na>car</span><span class=o>.</span><span class=na>year</span> <span class=o>+</span> <span class=s>&#34;)&#34;</span><span class=o>;</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>Picture</span> <span class=nf>get_thumbnail</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>car</span><span class=o>.</span><span class=na>pictures</span><span class=o>[</span><span class=n>0</span><span class=o>];</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>Picture</span><span class=o>[]</span> <span class=nf>get_pictures</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>car</span><span class=o>.</span><span class=na>pictures</span><span class=o>;</span>
+   <span class=o>}</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>House</span> <span class=o>{</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>address</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>year</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>String</span> <span class=n>owner</span><span class=o>;</span>
+   <span class=kd>public</span> <span class=n>Picture</span><span class=o>[]</span> <span class=n>pictures</span><span class=o>;</span>
+<span class=o>}</span>
+
+<span class=kd>class</span> <span class=nc>HouseDataAdapter</span> <span class=kd>implements</span> <span class=n>IDataAdapter</span> <span class=o>{</span>
+   <span class=n>House</span> <span class=n>house</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+   
+   <span class=kd>public</span> <span class=nf>HouseDataAdapter</span><span class=o>(</span><span class=n>House</span> <span class=n>house</span><span class=o>)</span> <span class=o>{</span>
+      <span class=k>this</span><span class=o>.</span><span class=na>house</span> <span class=o>=</span> <span class=n>house</span><span class=o>;</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>String</span> <span class=nf>get_title</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>house</span><span class=o>.</span><span class=na>address</span> <span class=o>+</span> <span class=s>&#34; (&#34;</span> <span class=o>+</span> <span class=k>this</span><span class=o>.</span><span class=na>house</span><span class=o>.</span><span class=na>year</span> <span class=o>+</span> <span class=s>&#34;)&#34;</span><span class=o>;</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>Picture</span> <span class=nf>get_thumbnail</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>house</span><span class=o>.</span><span class=na>pictures</span><span class=o>[</span><span class=n>0</span><span class=o>];</span>
+   <span class=o>}</span>
+
+   <span class=kd>public</span> <span class=n>Picture</span><span class=o>[]</span> <span class=nf>get_pictures</span><span class=o>()</span> <span class=o>{</span>
+      <span class=k>return</span> <span class=k>this</span><span class=o>.</span><span class=na>house</span><span class=o>.</span><span class=na>pictures</span><span class=o>;</span>
+   <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></div></article><section class="article license"><a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/></a>This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-nc-sa/4.0/>CC BY 4.0 License</a>.<br>All code is licensed under the <a href=../../../LICENSE-MIT>MIT License</a></section></div><div class="article bottom"><section class="article navigation"><p><a class=link href=../../../proxy-pattern/examples/lazy-loading/><span class="iconfont icon-article"></span>Lazy Loading</a></p></section></div></section><section id=footer><div class=footer-wrap><p class=copyright>© 2020 by Aleksandar Radivojević</p><p class=powerby><span>Powered&nbsp;by&nbsp;</span><a href=https://gohugo.io target=_blank>Hugo</a><span>&nbsp;&&nbsp;</span><a href=https://themes.gohugo.io/hugo-notepadium/ target=_blank>Notepadium</a></p></div></section><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css integrity=sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js integrity=sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js integrity=sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI crossorigin=anonymous onload=renderMathInElement(document.body);></script></body></html>
